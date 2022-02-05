@@ -38,7 +38,7 @@ public class TriangleClassificationTest {
     }
 
     @Test
-    void testTheLastOneThatIDontUnderstand() {
+    void testImpossibleTriangle() {
         assertEquals(Classification.NOT_A_TRIANGLE,
                 classify(1,2,3));
     }
