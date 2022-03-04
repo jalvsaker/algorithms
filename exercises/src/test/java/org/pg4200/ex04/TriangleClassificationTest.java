@@ -21,4 +21,19 @@ public class TriangleClassificationTest {
     void negativeC(){
         assertEquals(TriangleClassification.classify(0,0,-1), TriangleClassification.Classification.NOT_A_TRIANGLE);
     }
+
+    @Test
+    void zeroA(){
+        assertEquals(TriangleClassification.classify(0,1,1), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
+
+    @Test
+    void zeroB(){
+        assertEquals(TriangleClassification.classify(1,0,1), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
+
+    @Test
+    void zeroC(){
+        assertEquals(TriangleClassification.classify(1,1,0), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
 }
