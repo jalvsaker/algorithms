@@ -42,7 +42,7 @@ public class TriangleClassificationTest {
     }
 
     @Test
-    void allZeroOne(){
+    void allZero(){
         assertEquals(TriangleClassification.classify(-1,-1,-1), TriangleClassification.Classification.NOT_A_TRIANGLE);
     }
 
@@ -87,10 +87,12 @@ public class TriangleClassificationTest {
     @Test
     void maxIsoA(){
         assertEquals(TriangleClassification.classify(Integer.MAX_VALUE -1, Integer.MAX_VALUE, Integer.MAX_VALUE), TriangleClassification.Classification.ISOSCELES);
-    }@Test
+    }
+    @Test
     void maxIsoB(){
         assertEquals(TriangleClassification.classify(Integer.MAX_VALUE, Integer.MAX_VALUE -1, Integer.MAX_VALUE), TriangleClassification.Classification.ISOSCELES);
-    }@Test
+    }
+    @Test
     void maxIsoC(){
         assertEquals(TriangleClassification.classify(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE -1), TriangleClassification.Classification.ISOSCELES);
     }
