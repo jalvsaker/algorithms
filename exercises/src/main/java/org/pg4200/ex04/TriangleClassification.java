@@ -11,6 +11,10 @@ public class TriangleClassification {
         if (a == b && b == c){
             return Classification.EQUILATERAL;
         }
+
+        if (a == b || b == c || a == c){
+            return Classification.ISOSCELES;
+        }
         return null;
     }
 }

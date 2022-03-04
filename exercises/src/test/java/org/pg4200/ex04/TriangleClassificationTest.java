@@ -56,4 +56,19 @@ public class TriangleClassificationTest {
     void allMax(){
         assertEquals(TriangleClassification.classify(Integer.MAX_VALUE,Integer.MAX_VALUE, Integer.MAX_VALUE), TriangleClassification.Classification.EQUILATERAL);
     }
+
+    @Test
+    void isoA(){
+        assertEquals(TriangleClassification.classify(1,2,2), TriangleClassification.Classification.ISOSCELES);
+    }
+
+    @Test
+    void isoB(){
+        assertEquals(TriangleClassification.classify(2,1,2), TriangleClassification.Classification.ISOSCELES);
+    }
+
+    @Test
+    void isoC(){
+        assertEquals(TriangleClassification.classify(2,2,1), TriangleClassification.Classification.ISOSCELES);
+    }
 }
