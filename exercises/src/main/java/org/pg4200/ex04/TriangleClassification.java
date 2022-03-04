@@ -12,10 +12,15 @@ public class TriangleClassification {
             return Classification.EQUILATERAL;
         }
 
+        int max = Math.max(a, Math.max(b, c));
+
+        if ((max == a && max - b - c >= 0)
+                ||(max == b && max - c - a >= 0)
+                ||(max == c && max - a - b >= 0)){
+            return Classification.NOT_A_TRIANGLE;
+        }
+
         if (a == b || b == c || a == c){
-            if (a*2 < b || b*2 < c || c * 2 < a){
-                return Classification.NOT_A_TRIANGLE;
-            }
             return Classification.ISOSCELES;
         }
         return null;
