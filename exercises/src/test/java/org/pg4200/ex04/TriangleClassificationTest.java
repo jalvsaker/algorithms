@@ -36,4 +36,14 @@ public class TriangleClassificationTest {
     void zeroC(){
         assertEquals(TriangleClassification.classify(1,1,0), TriangleClassification.Classification.NOT_A_TRIANGLE);
     }
+
+    @Test
+    void allMinusOne(){
+        assertEquals(TriangleClassification.classify(-1,-1,-1), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
+
+    @Test
+    void allZeroOne(){
+        assertEquals(TriangleClassification.classify(-1,-1,-1), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
 }
