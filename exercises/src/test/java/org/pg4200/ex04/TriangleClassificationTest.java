@@ -94,4 +94,14 @@ public class TriangleClassificationTest {
     void maxIsoC(){
         assertEquals(TriangleClassification.classify(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE -1), TriangleClassification.Classification.ISOSCELES);
     }
+
+    @Test
+    void scalene(){
+        assertEquals(TriangleClassification.classify(2,3,4), TriangleClassification.Classification.SCALENE);
+    }
+
+    @Test
+    void maxScalene(){
+        assertEquals(TriangleClassification.classify(Integer.MAX_VALUE, Integer.MAX_VALUE-1, Integer.MAX_VALUE-2), TriangleClassification.Classification.SCALENE);
+    }
 }

@@ -20,9 +20,10 @@ public class TriangleClassification {
             return Classification.NOT_A_TRIANGLE;
         }
 
-        if (a == b || b == c || a == c){
+        if (a == b || b == c || a == c) {
             return Classification.ISOSCELES;
+        } else {
+            return Classification.SCALENE;
         }
-        return null;
     }
 }
