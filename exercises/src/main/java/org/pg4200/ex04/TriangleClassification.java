@@ -8,6 +8,9 @@ public class TriangleClassification {
             return Classification.NOT_A_TRIANGLE;
         }
 
+        if (a == b && b == c){
+            return Classification.EQUILATERAL;
+        }
         return null;
     }
 }

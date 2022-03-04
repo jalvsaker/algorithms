@@ -46,4 +46,14 @@ public class TriangleClassificationTest {
     void allZeroOne(){
         assertEquals(TriangleClassification.classify(-1,-1,-1), TriangleClassification.Classification.NOT_A_TRIANGLE);
     }
+
+    @Test
+    void allOnes(){
+        assertEquals(TriangleClassification.classify(1,1,1), TriangleClassification.Classification.EQUILATERAL);
+    }
+
+    @Test
+    void allMax(){
+        assertEquals(TriangleClassification.classify(Integer.MAX_VALUE,Integer.MAX_VALUE, Integer.MAX_VALUE), TriangleClassification.Classification.EQUILATERAL);
+    }
 }
