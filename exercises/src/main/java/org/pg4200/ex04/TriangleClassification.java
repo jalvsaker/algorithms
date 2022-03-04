@@ -13,6 +13,9 @@ public class TriangleClassification {
         }
 
         if (a == b || b == c || a == c){
+            if (a*2 < b || b*2 < c || c * 2 < a){
+                return Classification.NOT_A_TRIANGLE;
+            }
             return Classification.ISOSCELES;
         }
         return null;

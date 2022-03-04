@@ -1,6 +1,5 @@
 package org.pg4200.ex04;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,5 +69,18 @@ public class TriangleClassificationTest {
     @Test
     void isoC(){
         assertEquals(TriangleClassification.classify(2,2,1), TriangleClassification.Classification.ISOSCELES);
+    }
+
+    @Test
+    void impossibleIsoA(){
+        assertEquals(TriangleClassification.classify(5,2,2), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
+    @Test
+    void impossibleIsoB(){
+        assertEquals(TriangleClassification.classify(2,5,2), TriangleClassification.Classification.NOT_A_TRIANGLE);
+    }
+    @Test
+    void impossibleIsoC(){
+        assertEquals(TriangleClassification.classify(2,2,5), TriangleClassification.Classification.NOT_A_TRIANGLE);
     }
 }
