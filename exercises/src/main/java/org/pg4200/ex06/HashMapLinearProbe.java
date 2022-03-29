@@ -33,9 +33,9 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
     public void put(K key, V value) {
         Objects.requireNonNull(key);
 
-        int i = index(key);
+        int index = index(key);
 
-        for (int j = i; j < data.length; j++) {
+        for (int i = index; i < data.length; i++) {
             if (data[i] == null || data[i].key == key){
                 if (data[i] == null) size++;
                 data[i]= new Entry(key, value);
@@ -43,7 +43,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
             }
         }
 
-        for (int j = 0; j < i - 1; j++) {
+        for (int i = 0; i < index - 1; i++) {
             if (data[i] == null || data[i].key == key){
                 if (data[i] == null) size++;
                 data[i]= new Entry(key, value);
@@ -56,14 +56,14 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
     public void delete(K key) {
         Objects.requireNonNull(key);
 
-        int i = index(key);
+        int index = index(key);
 
-        if (data[i] == null){
+        if (data[index] == null){
             return;
         }
 
 
-        for (int j = i; j < data.length; j++){
+        for (int i = index; i < data.length; i++){
             if (data[i].key == key){
                 data[i].key = null;
                 size--;
@@ -71,7 +71,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
             }
         }
 
-        for (int j = 0; j < i - 1; j++){
+        for (int i = 0; i < index - 1; i++){
             if (data[i].key == key){
                 data[i].key = null;
                 size--;
@@ -84,21 +84,21 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
     public V get(K key) {
         Objects.requireNonNull(key);
 
-        int i = index(key);
+        int index = index(key);
 
-        if(data[i] == null){
+        if(data[index] == null){
             return null;
         }
 
 
-        for (int j = i; j < data.length; j++){
-            if (data[i].key == key){
+        for (int i = index; i < data.length; i++){
+            if (data[i] != null && data[i].key == key){
                 return data[i].value;
             }
         }
 
-        for (int j = 0; j < i - 1; j++) {
-            if (data[i].key == key){
+        for (int i = 0; i < index - 1; i++) {
+            if (data[i] != null && data[i].key == key){
                 return data[i].value;
             }
         }
