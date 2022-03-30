@@ -86,18 +86,18 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
 
         int index = index(key);
 
-        if(data[index] == null){
-            return null;
-        }
-
 
         for (int i = index; i < data.length; i++){
+            if (data[i] == null) return null;
+
             if (data[i] != null && data[i].key == key){
                 return data[i].value;
             }
         }
 
         for (int i = 0; i < index - 1; i++) {
+            if (data[i] == null) return null;
+
             if (data[i] != null && data[i].key == key){
                 return data[i].value;
             }
