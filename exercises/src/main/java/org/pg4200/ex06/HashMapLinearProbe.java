@@ -36,7 +36,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         int index = index(key);
 
         for (int i = index; i < data.length; i++) {
-            if (data[i] == null || data[i].key == key){
+            if (data[i] == null || key.equals(data[i].key)){
                 if (data[i] == null) size++;
                 data[i]= new Entry(key, value);
                 return;
@@ -44,7 +44,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         }
 
         for (int i = 0; i < index - 1; i++) {
-            if (data[i] == null || data[i].key == key){
+            if (data[i] == null || key.equals(data[i].key)){
                 if (data[i] == null) size++;
                 data[i]= new Entry(key, value);
                 return;
@@ -64,7 +64,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
 
 
         for (int i = index; i < data.length; i++){
-            if (data[i].key == key){
+            if (key.equals(data[i].key)){
                 data[i].key = null;
                 size--;
                 return;
@@ -72,7 +72,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         }
 
         for (int i = 0; i < index - 1; i++){
-            if (data[i].key == key){
+            if (key.equals(data[i].key)){
                 data[i].key = null;
                 size--;
                 return;
@@ -90,7 +90,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         for (int i = index; i < data.length; i++){
             if (data[i] == null) return null;
 
-            if (data[i] != null && data[i].key == key){
+            if (data[i] != null && key.equals(data[i].key)){
                 return data[i].value;
             }
         }
@@ -98,7 +98,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         for (int i = 0; i < index - 1; i++) {
             if (data[i] == null) return null;
 
-            if (data[i] != null && data[i].key == key){
+            if (data[i] != null && key.equals(data[i].key)){
                 return data[i].value;
             }
         }
