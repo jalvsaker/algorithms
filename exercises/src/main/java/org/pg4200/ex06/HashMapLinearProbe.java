@@ -36,16 +36,16 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         int index = index(key);
 
         for (int i = index; i < data.length; i++) {
-            if (data[i] == null || key.equals(data[i].key)){
-                if (data[i] == null) size++;
+            if (data[i] == null || data[i].key == null|| key.equals(data[i].key)){
+                if (data[i] == null || data[i].key == null) size++;
                 data[i]= new Entry(key, value);
                 return;
             }
         }
 
         for (int i = 0; i < index - 1; i++) {
-            if (data[i] == null || key.equals(data[i].key)){
-                if (data[i] == null) size++;
+            if (data[i] == null || data[i].key == null|| key.equals(data[i].key)){
+                if (data[i] == null || data[i].key == null) size++;
                 data[i]= new Entry(key, value);
                 return;
             }
@@ -66,6 +66,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         for (int i = index; i < data.length; i++){
             if (key.equals(data[i].key)){
                 data[i].key = null;
+                data[i].value = null;
                 size--;
                 return;
             }
@@ -74,6 +75,7 @@ public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
         for (int i = 0; i < index - 1; i++){
             if (key.equals(data[i].key)){
                 data[i].key = null;
+                data[i].value = null;
                 size--;
                 return;
             }
