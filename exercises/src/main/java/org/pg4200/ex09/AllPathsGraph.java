@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class MyAllPathsGraph<V> extends UndirectedGraph<V> {
+public class AllPathsGraph<V> extends UndirectedGraph<V> {
 
     public List<List<V>> findAllPaths(V start, V end){
 

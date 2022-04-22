@@ -7,10 +7,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MyAllPathsGraphTest {
+public class AllPathsGraphTest {
     @Test
     void testStuff(){
-        MyAllPathsGraph<String> graph = new MyAllPathsGraph<>();
+        AllPathsGraph<String> graph = new AllPathsGraph<>();
 
         assertEquals(0, graph.getNumberOfVertices());
 
