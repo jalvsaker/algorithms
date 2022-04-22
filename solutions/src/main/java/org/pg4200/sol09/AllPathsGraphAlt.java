@@ -1,11 +1,11 @@
-package org.pg4200.ex09;
+package org.pg4200.sol09;
 
 import org.pg4200.les09.UndirectedGraph;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AllPathsGraph<V> extends UndirectedGraph<V> {
+public class AllPathsGraphAlt<V> extends UndirectedGraph<V> {
 
     public List<List<V>> findAllPaths(V start, V end){
 

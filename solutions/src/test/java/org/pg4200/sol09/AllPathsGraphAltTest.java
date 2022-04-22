@@ -1,4 +1,4 @@
-package org.pg4200.ex09;
+package org.pg4200.sol09;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +8,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AllPathsGraphTest {
+public class AllPathsGraphAltTest {
 
     @Test
     public void testPaths(){
-        AllPathsGraph<String> graph = new AllPathsGraph<String>();
+        AllPathsGraphAlt<String> graph = new AllPathsGraphAlt<String>();
 
         graph.addEdge("0","X");
         graph.addEdge("X","1");
