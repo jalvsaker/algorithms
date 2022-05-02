@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AllPathsGraphTest {
+public class AllPathsGraphTestTest {
     @Test
     void testStuff(){
         AllPathsGraph<String> graph = new AllPathsGraph<>();
