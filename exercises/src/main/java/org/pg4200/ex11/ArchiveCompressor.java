@@ -21,7 +21,7 @@ public class ArchiveCompressor extends GenericCompressor {
 
             writer.write(parseInt(date[2]), 5);
 
-            writer.write(inputArray[i+2]);
+            writer.write(archive(inputArray[i+2]),3);
 
             writer.write(parseInt(inputArray[i+3]), 4);
 
@@ -34,8 +34,7 @@ public class ArchiveCompressor extends GenericCompressor {
 
         return writer.extract();
     }
-
-    int month(String code){
+    private int month(String code){
         switch (code){
             case "JAN": return 1;
             case "FEB": return 2;
@@ -50,10 +49,10 @@ public class ArchiveCompressor extends GenericCompressor {
             case "NOV": return 11;
             case "DEC": return 12;
         }
-        return 0;
+        throw new IllegalArgumentException();
     }
 
-    String month(int number){
+    private String month(int number){
         switch (number){
             case 1: return "JAN";
             case 2: return "FEB";
@@ -69,53 +68,67 @@ public class ArchiveCompressor extends GenericCompressor {
             case 12: return "DEC";
         }
 
-        return null;
+        throw new IllegalArgumentException();
+    }
+
+    private int archive(String code){
+        switch (code){
+            case "NAT": return 0;
+            case "OSL": return 1;
+            case "BER": return 2;
+            case "KRS": return 3;
+            case "TRO": return 4;
+            case "TRM": return 5;
+            case "MAR": return 6;
+        }
+        throw new IllegalArgumentException();
+    }
+    private String[] archive(int number){
+        switch (number){
+            case 0: return new String[]{"NAT", "NationalArchive"};
+            case 1: return new String[]{"OSL", "OsloArchive"};
+            case 2: return new String[]{"BER", "BergenArchive"};
+            case 3: return new String[]{"KRS", "KristiansandArchive"};
+            case 4: return new String[]{"TRO", "TrondheimArchive"};
+            case 5: return new String[]{"TRM", "TromsoArchive"};
+            case 6: return new String[]{"MAR", "MaritimeArchive"};
+        }
+        throw new IllegalArgumentException();
     }
 
     @Override
     public String decompress(byte[] input) {
         BitReader reader = new BitReader(input);
 
-        int length = (input.length * 8)/96; //239 -> 96
+        int length = (input.length * 8)/51; //239 -> 96
 
-        String out = "";
+        StringBuilder out = new StringBuilder();
 
         for (int j = 0; j < length; j++) {
-            out += String.format("%04d", reader.readInt(12));
+            out.append(String.format("%04d", reader.readInt(12)));
 
-            out += "-";
+            out.append("-");
 
-            out+= month(reader.readInt(4));
+            out.append(month(reader.readInt(4)));
 
-            out += "-";
+            out.append("-");
 
-            out += String.format("%02d", reader.readInt(5));
+            out.append(String.format("%02d", reader.readInt(5)));
 
-            out += "; ";
+            out.append("; ");
 
-            String code = "";
+            String[] archive = archive(reader.readInt(3));
 
-            for (int i = 0; i < 3; i++) {
-                code += reader.readChar();
-            }
+            out.append(archive[1]).append("; ");
 
-            switch (code){
-                case "MAR":
-                    out += "MaritimeArchive; ";
-                    break;
-                case "NAT" :
-                    out += "NationalArchive; ";
-                    break;
-            }
+            out.append(archive[0]).append("; ");
 
-            out += code+"; ";
+            out.append(String.format("%02d", reader.readInt(4))).append("; ");
 
-            out += String.format("%02d", reader.readInt(4)) + "; ";
-
-            out += String.format("%03d", reader.readInt(11)) + "; ";
-            out += String.format("%04d", reader.readInt(12)) + ";\n";
+            out.append(String.format("%03d", reader.readInt(11))).append("; ");
+            out.append(String.format("%04d", reader.readInt(12))).append(";\n");
         }
 
-        return out;
+        return out.toString();
     }
 }
