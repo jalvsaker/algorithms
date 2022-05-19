@@ -83,4 +83,50 @@ public class PartETest {
         return result;
     }
 
+
+    @Test
+    void test(){
+        ArrayList<Course> courses = generateCourses(200);
+        ArrayList<Student> students = generateStudents(1500, courses);
+        ArrayList<DiplomaProject> diplomaProjects = generateDiplomaProjs(700, students);
+
+        Course pg4200 = courses.get(0);
+
+
+        List<String> list = diplomaProjects.stream()
+                .flatMap(diplomaProject -> diplomaProject.authors.stream())
+                .distinct()
+                .filter(student -> student.courseList.containsKey(pg4200))
+                .filter(student -> student.courseList.get(pg4200) >= 2)
+                .map(student -> student.diplomaProject)
+                .distinct()
+                .map(diplomaProject -> diplomaProject.title)
+                .collect(Collectors.toList());
+
+        //System.out.println(list.size());
+        assertTrue(list.size() > 0);
+
+        List<String> rubric = rubric(diplomaProjects, pg4200);
+        //System.out.println(rubric.size());
+
+        assertEquals(rubric.size(), list.size());
+        assertTrue(list.containsAll(rubric));
+        assertTrue(rubric.containsAll(list));
+    }
+
+    /**
+     * solution from sol08
+     */
+    public ArrayList<String> rubric(ArrayList<DiplomaProject> diplomaProjects, Course course){
+        return diplomaProjects.stream()
+                .filter(d -> d.authors.stream()
+                        .filter(s -> s.courseList.containsKey(course))
+                        .anyMatch(s -> s.courseList.get(course) >= 2)
+                )
+                .map(d -> d.title)
+                .distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+
 }
