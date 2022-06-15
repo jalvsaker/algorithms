@@ -8,13 +8,13 @@ public class Ex02<V> {
 
     UndirectedGraph<V> metro = new UndirectedGraph<>();
     UndirectedGraph<V> tram = new UndirectedGraph<>();
-    HashSet<V> vertexes = new HashSet<>();
+    HashSet<V> vertices = new HashSet<>();
 
     /*
     Finds path between nodes using BFS algorithm
      */
     public List<V> findPath(V start, V end){
-        if (!vertexes.contains(start)||!vertexes.contains(end)){
+        if (!vertices.contains(start)||!vertices.contains(end)){
             return null;
         }
 
@@ -78,7 +78,7 @@ public class Ex02<V> {
     public void addVertex(V vertex){
         metro.addVertex(vertex);
         tram.addVertex(vertex);
-        vertexes.add(vertex);
+        vertices.add(vertex);
     }
 
     public void addEdgeTram(V from, V to){
@@ -94,5 +94,31 @@ public class Ex02<V> {
         addVertex(to);
 
         metro.addEdge(from, to);
+    }
+
+    public int getNumberOfVertices() {
+        return vertices.size();
+    }
+
+    public int getNumberOfEdges(){
+        return metro.getNumberOfEdges() + tram.getNumberOfEdges();
+    }
+
+    public void removeEdgeTram(V from, V to){
+        tram.removeEdge(from,to);
+    }
+    public void removeEdgeMetro(V from, V to){
+        metro.removeEdge(from, to);
+    }
+
+    public void removeVertex(V vertex){
+
+        if (!vertices.contains(vertex)){
+            return;
+        }
+
+        metro.removeVertex(vertex);
+        tram.removeVertex(vertex);
+        vertices.remove(vertex);
     }
 }

@@ -46,4 +46,24 @@ public class Ex02Test {
         }
 
     }
+
+    @Test
+    void test2(){
+        var graph = setup();
+
+        System.out.println(graph.getNumberOfEdges());
+        System.out.println(graph.getNumberOfVertices());
+
+        graph.removeEdgeMetro(1,2);
+
+
+        System.out.println();
+        System.out.println(graph.getNumberOfEdges());
+        System.out.println(graph.getNumberOfVertices());
+
+        graph.removeVertex(5);
+        System.out.println();
+        System.out.println(graph.getNumberOfEdges());
+        System.out.println(graph.getNumberOfVertices());
+    }
 }
