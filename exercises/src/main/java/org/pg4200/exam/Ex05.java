@@ -68,12 +68,14 @@ public class Ex05 {
 
             output.append(" / ");
 
+            //Date
             output.append(String.format("%04d", reader.readInt(12)));
             output.append("-");
             output.append(month(reader.readInt(4)));
             output.append("-");
             output.append(String.format("%02d", reader.readInt(5)));
 
+            //File
             output.append(". File: feedback-");
             output.append(programAndCourseCode.substring(programAndCourseCode.length() - 6));
             output.append("-");

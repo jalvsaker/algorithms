@@ -8,10 +8,12 @@ public class Ex02<V> {
 
     UndirectedGraph<V> metro = new UndirectedGraph<>();
     UndirectedGraph<V> tram = new UndirectedGraph<>();
-    HashSet<V> vertices = new HashSet<>();
+    HashSet<V> vertices = new HashSet<>(); //to keep track of all vertices
 
     /*
     Finds path between nodes using BFS algorithm
+    Checks first for the shortest route using one mode of transport.
+    If no route is found it checks for shortest route by changing modes.
      */
     public List<V> findPath(V start, V end){
         if (!vertices.contains(start)||!vertices.contains(end)){
@@ -33,6 +35,7 @@ public class Ex02<V> {
             return tramPath;
         }
 
+        //Calculate path of changing between tram and metro using BFS
         Queue<V> queue = new ArrayDeque<>();
         Map<V, V> bestParent = new HashMap<>();
 
@@ -82,7 +85,7 @@ public class Ex02<V> {
     }
 
     public void addEdgeTram(V from, V to){
-        //make sure it's in both
+        //make sure all vertexes are in both graphs
         addVertex(from);
         addVertex(to);
 
