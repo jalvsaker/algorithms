@@ -7,6 +7,6 @@ public class Ex01 {
     }
 
     public String regexPartB(){
-        return "@.+: .*(pg|PG|programming|programmering).*\\?";
+        return "@.+: .*((pg|PG).\\d{3,4}|programming|programmering).*\\?";
     }
 }
