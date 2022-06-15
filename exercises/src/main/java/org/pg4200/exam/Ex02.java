@@ -11,7 +11,7 @@ public class Ex02<V> {
     HashSet<V> vertexes = new HashSet<>();
 
     /*
-    Finds path between nodes
+    Finds path between nodes using BFS algorithm
      */
     public List<V> findPath(V start, V end){
         if (!vertexes.contains(start)||!vertexes.contains(end)){
@@ -33,42 +33,41 @@ public class Ex02<V> {
             return tramPath;
         }
 
-        Set<V> alreadyVisited = new HashSet<>();
-        Deque<V> stack = new ArrayDeque<>();
+        Queue<V> queue = new ArrayDeque<>();
+        Map<V, V> bestParent = new HashMap<>();
 
-        dfs(alreadyVisited, stack, start, end);
+        queue.add(start);
 
-        if (isPathTo(stack, end)){
-            List<V> path = new ArrayList<>(stack);
-            Collections.reverse(path);
-            return path;
-        }
+        loop: while (!queue.isEmpty()){
+            V parent = queue.poll();
 
-        System.out.println();
-        return null;
-    }
+            for (V child: getAdjacents(parent)){
+                if(child.equals(start)||bestParent.get(child) != null){
+                    continue;
+                }
+                bestParent.put(child, parent);
 
-    private void dfs(Set<V> alreadyVisited, Deque<V> stack, V current, V end){
-        alreadyVisited.add(current);
-        stack.push(current);
+                if (child.equals(end)){
+                    break loop;
+                }
 
-        if(isPathTo(stack, end)){
-            return;
-        }
-
-        for (V connected : getAdjacents(current)){
-            if (alreadyVisited.contains(connected)){
-                continue;
+                queue.add(child);
             }
 
-            dfs(alreadyVisited, stack, connected, end);
 
-            if(! isPathTo(stack, end)){
-                stack.pop();
-            } else {
-                return;
-            }
         }
+        if(!bestParent.containsKey(end)){
+            return null;
+        }
+
+        List<V> path = new ArrayList<>();
+        V current = end;
+        while (current != null){
+            path.add(0,current);
+            current = bestParent.get(current);
+        }
+
+        return path;
     }
 
     public Collection<V> getAdjacents(V vertex) {
@@ -76,11 +75,6 @@ public class Ex02<V> {
         adjacents.addAll(tram.getAdjacents(vertex));
         return adjacents;
     }
-
-    private boolean isPathTo(Deque<V> stack, V vertex){
-        return !stack.isEmpty() && stack.peek().equals(vertex);
-    }
-
     public void addVertex(V vertex){
         metro.addVertex(vertex);
         tram.addVertex(vertex);
