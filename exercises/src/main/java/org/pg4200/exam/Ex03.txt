@@ -1,0 +1,13 @@
+UndirectedGraph uses HashMap’s. It could also have been implemented using
+another Key/Value data structure like for example a binary tree. Using a
+Red-black binary tree we can guarantee O(log n) for searching. Using a HashMap
+is usually faster as it can be O(1) in the best case scenario, but in the worst
+case scenario it turns to O(n). HashMap is typically better but if you can’t risk
+having a longer wait for an operation a Red-black binary tree would be better.
+
+My Ex02 uses Breadth-first search to find a path between nodes. This will
+guarantee to find the shortest path between nodes. Its worst-case complexity is
+O(|V|+|E|), where |V| is number of vertices and |E| is number of edges. In my
+implementation I first do BFS on both Graphs separately and if it does not find
+a path I then to it one last both graphs together. This does not affect the
+complexity which is still O(|V|+|E|).
